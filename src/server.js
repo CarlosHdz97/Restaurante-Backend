@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const express = require("express");
 const app = express();
 const provedorRoutes = require('./routes/provedor.js');
+const productRoutes = require('./routes/product.js');
 const connection = require('./config/DBConnection');
 // Middlewares
 app.use(cors());
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 
 //routes
 app.use('/provedor',provedorRoutes);
+app.use('/product',productRoutes);
 
 
 const port = 3000 || process.env.PORT;
