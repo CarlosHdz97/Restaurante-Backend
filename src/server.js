@@ -3,9 +3,11 @@ const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
 const app = express();
-const provedorRoutes = require('./routes/provedor.js');
 const productRoutes = require('./routes/product.js');
-const connection = require('./config/DBConnection');
+const provedorRoutes = require('./routes/provedor.js');
+const PP = require('./models/productProvedor.js');
+
+//const pp = require('./models/productProvedor.js');
 // Middlewares
 app.use(cors());
 app.use(bodyParser.json());

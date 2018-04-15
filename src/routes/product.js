@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const sequelize = require('sequelize');
 const Product = require('../models/product');
+const Provedor= require('../models/provedor');
 
 
 //get data. /Product
 router.get('/', (req, res)=>{
-  Product.findAll().then( product =>{
+  Product.findAll({include:[{model: Provedor}]}).then( product =>{
 			res.json(product);
 		})
 		.catch( err =>{
@@ -34,7 +35,7 @@ router.post('/', (req, res) => {
     res.status(200).json({product: 'Producto agregado!'});
   })
   .catch(err =>{
-    res.status(400).send({product: 'Error al agregar el item'});
+    res.status(400).send({err: 'Error al agregar el item'});
   });
 });
 
@@ -49,11 +50,12 @@ router.put('/:id', (req, res, next) => {
     product.minStock = req.body.minStock;
     product.maxStock = req.body.maxStock;
     product.kind = req.body.kind;
+    product.provedorId = req.body.provedorId;
     product.save().then(product => {
       res.status(200).json({product: 'Producto agregado!'});
     })
     .catch(err=>{
-      res.status(400).send({product: 'Error al agregar el item'});
+      res.status(400).send({err: 'Error al agregar el item'});
     });
     })
   .catch(err=>{

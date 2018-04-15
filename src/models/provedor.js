@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/DBConnection');
+const Product = require('./product.js');
 const Provedor = connection.define('provedor',{
   name: {
     type: Sequelize.STRING(40),
@@ -31,5 +32,5 @@ const Provedor = connection.define('provedor',{
     type: Sequelize.STRING(255)
   }
 });
-connection.sync();
+
 module.exports = Provedor;
