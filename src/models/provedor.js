@@ -3,33 +3,24 @@ const connection = require('../config/DBConnection');
 const Product = require('./product.js');
 const Provedor = connection.define('provedor',{
   name: {
-    type: Sequelize.STRING(40),
-    validate:{
-      notNull: true,
-    },
+    type: Sequelize.STRING(50),
+    required: true
   },
   address:{
-    type: Sequelize.STRING(60),
-    validate:{
-      notNull: true,
-    }
+    type: Sequelize.STRING(250),
+    required: true
   },
   phone:{
     type: Sequelize.STRING(40),
-    validate:{
-      isNumeric: true,
-      notNull: true
-    }
+    required: true
   },
   email:{
     type: Sequelize.STRING(50),
-    validate:{
-      isEmail: true,
-      notNull: true
-    }
+    required: true
   },
   description:{
-    type: Sequelize.STRING(255)
+    type: Sequelize.STRING(255),
+    required: true
   }
 });
 
