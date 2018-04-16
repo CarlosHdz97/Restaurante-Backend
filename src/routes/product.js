@@ -55,7 +55,7 @@ router.put('/:id', (req, res, next) => {
       res.status(200).json({product: 'Producto agregado!'});
     })
     .catch(err=>{
-      res.status(400).send({err: 'Error al agregar el item'});
+      res.status(400).send({err: 'Error al actualizar el producto'});
     });
     })
   .catch(err=>{
@@ -68,10 +68,10 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) =>{
   Product.destroy({where:{id:req.params.id}})
   .then( product=>{
-    res.status(200).json({provedor: 'Producto eliminado!'});
+    res.status(200).json({product: 'Producto eliminado!'});
     })
   .catch( err=>{
-    res.status(400).send({provedor: 'Error al actualizar el producto'});
+    res.status(400).send({product: 'Error al eliminar el producto'});
   });
 });
 
