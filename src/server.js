@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const productRoutes = require('./routes/product.js');
 const provedorRoutes = require('./routes/provedor.js');
-const PP = require('./models/productProvedor.js');
+const productOrder = require('./models/productOrder.js');
 
 //const pp = require('./models/productProvedor.js');
 // Middlewares
