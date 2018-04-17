@@ -17,7 +17,7 @@ app.use('/provedor',provedorRoutes);
 app.use('/product',productRoutes);
 
 
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000 ;
 console.log(port);
 app.listen(port, () => {
   console.log('Servidor iniciado en el puerto: ', port);
