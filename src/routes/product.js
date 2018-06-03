@@ -3,11 +3,38 @@ const router = express.Router();
 const sequelize = require('sequelize');
 const Product = require('../models/product');
 const Provedor= require('../models/provedor');
+const Op= sequelize.Op;
 
 
 //get data. /Product
 router.get('/', (req, res)=>{
   Product.findAll({include:[{model: Provedor}]}).then( product =>{
+			res.json(product);
+		})
+		.catch( err =>{
+			throw err;
+		});
+});
+
+//get data. /Product/soldOut
+router.get('/soldOut', (req, res)=>{
+  Product.findAll({include:[{model: Provedor}], where:{amount:{
+      [Op.eq]: 0
+  }}}).then( product =>{
+			res.json(product);
+		})
+		.catch( err =>{
+			throw err;
+		});
+});
+
+//get data. /Product/soldOut
+router.get('/soonSellOut', (req, res)=>{
+  Product.findAll({include:[{model: Provedor}], where:{amount:{
+      [Op.gt]: 0,
+      [Op.lte]: sequelize.col('minStock')
+
+  }}}).then( product =>{
 			res.json(product);
 		})
 		.catch( err =>{
