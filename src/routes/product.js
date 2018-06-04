@@ -42,6 +42,16 @@ router.get('/soonSellOut', (req, res)=>{
 		});
 });
 
+//get data. /product/provedor
+router.get('/provedor/:id',(req,res,next) =>{
+  Product.findOne({where: {provedorId: req.params.id}})
+  .then( product =>{
+			res.json(product);
+    })
+  .catch( err =>{
+    throw err;
+  });
+});
 
 //get data. /product/:id
 router.get('/:id',(req,res,next) =>{
