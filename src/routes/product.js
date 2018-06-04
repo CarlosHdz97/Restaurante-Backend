@@ -44,7 +44,7 @@ router.get('/soonSellOut', (req, res)=>{
 
 //get data. /product/provedor
 router.get('/provedor/:id',(req,res,next) =>{
-  Product.findOne({where: {provedorId: req.params.id}})
+  Product.findAll({where: {provedorId: req.params.id}})
   .then( product =>{
 			res.json(product);
     })
