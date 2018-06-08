@@ -10,6 +10,10 @@ const Product = connection.define('product',{
     type: Sequelize.FLOAT,
     required: true
   },
+  price:{
+    type: Sequelize.FLOAT,
+    required: true
+  },
   unit:{
     type: Sequelize.STRING(30),
     required: true

@@ -14,7 +14,7 @@ const Dish = connection.define('dish',{
     required: true
   },
   type:{
-    type:Sequelize.BOOLEAN,
+    type:Sequelize.String(20),
     required: true
   },
   note:{

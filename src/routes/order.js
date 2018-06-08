@@ -1,16 +1,74 @@
 const express = require('express');
 const router = express.Router();
-router.get('/', (req, res)=>{
-			res.json({
-        "id":"3",
-        "idProvedor":"12",
-        "fechaEntrega":"2018-04-20",
-        "total":"2000.14",
-        "productos":{
-          "idProduct": [3,1,12,10,5,15,13,23,34,43,2]
-        }
-      });
+const Product = require('../models/product');
+const Order= require('../models/order');
+const productOrder= require('../models/productOrder');
 
+//get data. /Order
+router.get('/',(req,res,next) =>{
+	Order.findAll({order: ['deliveryDate'],include: [{model: Product, as:'Detalles'}]})
+	.then( order =>{
+		res.json(order);
+	})
+	.catch( err =>{
+		throw err;
+	});
 });
+
+//get data. /Order
+router.get('/sinEntregar',(req,res,next) =>{
+	Order.findAll({order: ['deliveryDate'],include: [{model: Product, as:'Detalles'}], where:{status:false}})
+	.then( order =>{
+		res.json(order);
+	})
+	.catch( err =>{
+		throw err;
+	});
+});
+
+//get data. /Order
+router.get('/now',(req,res,next) =>{
+	Order.findAll({order: ['deliveryDate'],include: [{model: Product, as:'Detalles'}], where:{deliveryDate:new Date().toISOString(), status:false}})
+	.then( order =>{
+		res.json(order);
+	})
+	.catch( err =>{
+		throw err;
+	});
+});
+
+//post data /order
+router.post('/order', (req, res) => {
+  const Order = new Order(req.body);
+  Order.save().then( order => {
+    res.status(200).json({order: 'Orden agregada!'});
+  })
+  .catch(err =>{
+    res.status(400).send({err: 'Error al agregar el item'});
+  });
+});
+
+router.post('/detail', (req, res) => {
+  const ProductOrder = new productOrder(req.body);
+  ProductOrder.save().then( order => {
+    res.status(200).json({order: 'Detalles agregada!'});
+  })
+  .catch(err =>{
+    res.status(400).send({err: 'Error al agregar el item'});
+  });
+});
+
+
+//get data. /Order/:id
+router.get('/:id',(req,res,next) =>{
+	Order.findOne({include: [{model: Product, as:'Detalles'}], where: {id: req.params.id}})
+	.then( order =>{
+		res.json(order);
+	})
+	.catch( err =>{
+		throw err;
+	});
+});
+
 
 module.exports = router;

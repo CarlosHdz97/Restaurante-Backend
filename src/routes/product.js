@@ -82,6 +82,7 @@ router.put('/:id', (req, res, next) => {
   Product.findOne({where: {id: req.params.id}})
   .then(product=>{
     product.name = req.body.name;
+    product.price = req.body.price;
     product.amount = req.body.amount;
     product.unit = req.body.unit;
     product.minStock = req.body.minStock;
