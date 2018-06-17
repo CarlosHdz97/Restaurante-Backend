@@ -5,7 +5,7 @@ const User = connection.define('user',{
     type: Sequelize.STRING(60),
     required: true
   },
-  fisrtSurname: {
+  firstSurname: {
     type: Sequelize.STRING(60),
     required: true
   },
@@ -20,7 +20,11 @@ const User = connection.define('user',{
   password:{
     type: Sequelize.STRING(255),
     required: true
+  },
+  rol:{
+    type: Sequelize.STRING(255),
+    required: true
   }
 });
-
+connection.sync();
 module.exports = User;

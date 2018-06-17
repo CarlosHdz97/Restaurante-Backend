@@ -6,9 +6,23 @@ const Provedor = connection.define('provedor',{
     type: Sequelize.STRING(50),
     required: true
   },
-  address:{
+  street:{
+    type: Sequelize.STRING(30),
+  },
+  number:{
+    type: Sequelize.INTEGER(30),
+  },
+  colonia:{
+    type: Sequelize.STRING(30),
+  },
+  cp:{
     type: Sequelize.STRING(250),
-    required: true
+  },
+  state:{
+    type: Sequelize.STRING(30),
+  },
+  municipio:{
+    type: Sequelize.STRING(30),
   },
   phone:{
     type: Sequelize.STRING(40),

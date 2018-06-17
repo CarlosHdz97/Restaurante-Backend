@@ -13,8 +13,8 @@ const Dish = connection.define('dish',{
     type: Sequelize.DATEONLY,
     required: true
   },
-  type:{
-    type:Sequelize.String(20),
+  tipo: {
+    type: Sequelize.STRING(60),
     required: true
   },
   note:{

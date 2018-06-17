@@ -44,7 +44,12 @@ router.put('/:id', (req, res, next) => {
   Provedor.findOne({where: {id: req.params.id}})
   .then(provedor=>{
     provedor.name = req.body.name;
-    provedor.address = req.body.address;
+    provedor.street = req.body.street;
+    provedor.number = req.body.number;
+    provedor.colonia= req.body.colonia;
+    provedor.cp = req.body.cp;
+    provedor.state = req.body.state;
+    provedor.municipio = req.body.municipio;
     provedor.phone = req.body.phone;
     provedor.email = req.body.email;
     provedor.description = req.body.description;

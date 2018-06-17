@@ -6,7 +6,7 @@ const productOrder= require('../models/productOrder');
 
 //get data. /Order
 router.get('/',(req,res,next) =>{
-	Order.findAll({order: ['deliveryDate'],include: [{model: Product, as:'Detalles'}]})
+	Order.findAll({order: ['id'],include: [{model: Product, as:'Detalles'}]})
 	.then( order =>{
 		res.json(order);
 	})
@@ -37,10 +37,12 @@ router.get('/now',(req,res,next) =>{
 	});
 });
 
+
+
 //post data /order
-router.post('/order', (req, res) => {
-  const Order = new Order(req.body);
-  Order.save().then( order => {
+router.post('/', (req, res) => {
+  const order = new Order(req.body);
+  order.save().then( order => {
     res.status(200).json({order: 'Orden agregada!'});
   })
   .catch(err =>{
@@ -50,8 +52,8 @@ router.post('/order', (req, res) => {
 
 router.post('/detail', (req, res) => {
   const ProductOrder = new productOrder(req.body);
-  ProductOrder.save().then( order => {
-    res.status(200).json({order: 'Detalles agregada!'});
+  ProductOrder.save().then( ProductOrder => {
+    res.status(200).json({ProductOrder: 'Detalles agregados!'});
   })
   .catch(err =>{
     res.status(400).send({err: 'Error al agregar el item'});

@@ -47,7 +47,8 @@ router.put('/:id', (req, res, next) => {
     user.address = req.body.address;
     user.fisrtSurname = req.body.fisrtSurname;
     user.surname = req.body.surname;
-    user.password;
+    user.password = req.body.password;
+    user.rol = req.body.rol;
     user.save().then(user => {
       res.status(200).json({user: 'Usuario actualizado!'});
     })

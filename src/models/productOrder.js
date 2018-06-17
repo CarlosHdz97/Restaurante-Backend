@@ -11,8 +11,12 @@ const productOrder = connection.define('productOrder', {
   price:{
     type:Sequelize.FLOAT,
     required: true
+  },
+  expiryDate:{
+    type: Sequelize.DATEONLY
   }
 })
 Order.belongsToMany(Product,{as:'Detalles', through:'productOrder'});
 Product.belongsToMany(Order,{as:'Ordenes', through:'productOrder'});
 connection.sync();
+module.exports = productOrder;

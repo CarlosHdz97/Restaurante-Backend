@@ -11,7 +11,7 @@ const userRoutes = require('./routes/user.js');
 const orderRoutes = require('./routes/order.js');
 //const commandRoutes = require('./routes/command.js');
 const productProvedor = require('./models/productProvedor.js');
-const productOrder = require('./models/productOrder.js');
+//const productOrder = require('./models/productOrder.js');
 
 // Middlewares
 app.use(cors());
