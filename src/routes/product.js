@@ -105,7 +105,7 @@ router.put('/:id', (req, res, next) => {
 router.put('amount/:id', (req, res, next) => {
   Product.findOne({where: {id: req.params.id}})
   .then(product=>{
-    product.amount+= req.body.amount;
+    product.amount= req.body.amount;
     product.save().then(product => {
       res.status(200).json({product: 'Producto actualizado!'});
     })
