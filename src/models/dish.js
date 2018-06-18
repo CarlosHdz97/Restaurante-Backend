@@ -9,16 +9,16 @@ const Dish = connection.define('dish',{
     type:Sequelize.FLOAT,
     required: true
   },
-  timeElaboration: {
-    type: Sequelize.DATEONLY,
-    required: true
-  },
   tipo: {
     type: Sequelize.STRING(60),
     required: true
   },
   note:{
     type: Sequelize.STRING(255)
+  },
+  status:{
+    type:Sequelize.BOOLEAN,
+    required: true
   }
 });
 
