@@ -19,7 +19,7 @@ router.get('/',(req,res,next) =>{
 
 
 //post data /order
-router.post('/dish', (req, res) => {
+router.post('/', (req, res) => {
   const dish = new Dish(req.body);
   dish.save().then( dish => {
     res.status(200).json({dish: 'Platillo agregado!'});
@@ -39,7 +39,6 @@ router.post('/detail', (req, res) => {
     res.status(400).send({err: 'Error al agregar el item'});
   });
 });
-
 
 
 //get data. /Order/:id
