@@ -83,7 +83,7 @@ router.put('/:id', (req, res, next) => {
   .then(product=>{
     product.name = req.body.name;
     product.price = req.body.price;
-    product.amount = req.body.amount;
+    product.amount += req.body.amount;
     product.unit = req.body.unit;
     product.minStock = req.body.minStock;
     product.maxStock = req.body.maxStock;
@@ -101,22 +101,6 @@ router.put('/:id', (req, res, next) => {
   });
 });
 
-
-router.put('amount/:id', (req, res, next) => {
-  Product.findOne({where: {id: req.params.id}})
-  .then(product=>{
-    product.amount= req.body.amount;
-    product.save().then(product => {
-      res.status(200).json({product: 'Producto actualizado!'});
-    })
-    .catch(err=>{
-      res.status(400).send({err: 'Error al actualizar el producto'});
-    });
-    })
-  .catch(err=>{
-    throw err;
-  });
-});
 
 //delete data- /provedor/id -delete
 router.delete('/:id', (req, res, next) =>{
