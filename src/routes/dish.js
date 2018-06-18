@@ -30,6 +30,17 @@ router.post('/dish', (req, res) => {
 });
 
 
+router.post('/detail', (req, res) => {
+  const ProductOrder = new productOrder(req.body);
+  ProductOrder.save().then( ProductOrder => {
+    res.status(200).json({ProductOrder: 'Detalles agregados!'});
+  })
+  .catch(err =>{
+    res.status(400).send({err: 'Error al agregar el item'});
+  });
+});
+
+
 
 //get data. /Order/:id
 router.get('/:id',(req,res,next) =>{
