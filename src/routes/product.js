@@ -102,6 +102,22 @@ router.put('/:id', (req, res, next) => {
 });
 
 
+router.put('amount/:id', (req, res, next) => {
+  Product.findOne({where: {id: req.params.id}})
+  .then(product=>{
+    product.amount+= req.body.amount;
+    product.save().then(product => {
+      res.status(200).json({product: 'Producto actualizado!'});
+    })
+    .catch(err=>{
+      res.status(400).send({err: 'Error al actualizar el producto'});
+    });
+    })
+  .catch(err=>{
+    throw err;
+  });
+});
+
 //delete data- /provedor/id -delete
 router.delete('/:id', (req, res, next) =>{
   Product.destroy({where:{id:req.params.id}})
