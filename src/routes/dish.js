@@ -20,8 +20,8 @@ router.get('/',(req,res,next) =>{
 
 //post data /order
 router.post('/dish', (req, res) => {
-  const Dish = new Order(req.body);
-  Dish.save().then( dish => {
+  const dish = new Dish(req.body);
+  dish.save().then( dish => {
     res.status(200).json({dish: 'Platillo agregado!'});
   })
   .catch(err =>{
