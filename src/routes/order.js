@@ -72,5 +72,22 @@ router.get('/:id',(req,res,next) =>{
 	});
 });
 
+//update data- /Provedor/id -Put
+router.put('/:id', (req, res, next) => {
+  Order.findOne({where: {id: req.params.id}})
+  .then(order=>{
+    order.status = req.body.status;
+    order.save().then(order => {
+      res.status(200).json({order: 'Order actualizado!'});
+    })
+    .catch(err=>{
+      res.status(400).send({err: 'Error al actualizar el item'});
+    });
+    })
+  .catch(err=>{
+    throw err;
+  });
+});
+
 
 module.exports = router;
